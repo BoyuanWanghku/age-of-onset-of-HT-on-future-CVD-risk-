@@ -1,0 +1,5 @@
+Project Title: The impact of hypertension onset age on the risk of cardiovascular diseases and mortality: Two 10-year retrospective cohort studies in the United Kingdom and Hong Kong
+
+This study investigated the association between age of hypertension onset and future risks of cardiovascular diseases (CVD) and mortality based on two large retrospective cohorts from the United Kingdom and Hong Kong. Adults with newly diagnosed hypertension or without hypertension between January 1, 2008 and December 31, 2013 were considered eligible. Participants were classified into six age groups (18-39, 40-49, 50-59, 60-69, 70-79, ≥80 years). Within each group, propensity score fine stratification weighting was used to ensure balance between the new-onset hypertension group and the control groups. Multivariable Cox proportional hazards models, adjusted for all baseline characteristics, were applied to estimate hazard ratios and 95% confidence intervals for CVD and mortality.
+
+All analyses were performed using Stata/MP 15.1.  
