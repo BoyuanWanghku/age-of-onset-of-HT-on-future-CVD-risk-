@@ -43,7 +43,6 @@ di "Group_`i'"
 quietly use "overall_data_weight`i'_v1.dta", clear 
 
 	foreach outcome in death renal_decline first_esrd first_ckd{
-		quietly replace `outcome'_fu_period2=`outcome'_fu_period2/12
 		stset `outcome'_fu_period2, id(patient_pssn) failure(`outcome')
 		stptime, per(1000) by(onset_dm)
 }
