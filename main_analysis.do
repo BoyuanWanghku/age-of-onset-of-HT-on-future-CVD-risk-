@@ -1,8 +1,5 @@
 
 //weighting
-set more off
-
-cd "/mnt/GP_cohort/Dataset/onset_DM_ckd_by"
 
 forval i = 0/5 {
 di "age_`i'"
@@ -38,7 +35,6 @@ di _N
 
 
 //t2&f1
-cd "/mnt/GP_cohort/Dataset/onset_DM_ckd_by"
 log using "log/t2.log", replace
 //incident rate
 forval i = 0/5 {
@@ -58,9 +54,6 @@ log close
 
 
 //figure1
-set more off
-
-cd "/mnt/GP_cohort/Dataset/onset_DM_ckd_by"
 log using "log/figure1.log", replace
 //weight
 //HR
