@@ -7,10 +7,10 @@ use "overall_data temp_v1.dta", clear
 
 keep if age_c == `i'
 
-logit onset_dm age sex smoking_bl af_before pvd_before amputation_before dementia_before lung_before CTD_before peptic_ulcer_before liver_before cvd_before hemiplegia_before leukemia_before malignant_lymphoma_before cancer_before ht_before ht_drug_b4 lipid_drug_b4 
+logit onset_ht age sex smoking_bl af_before pvd_before amputation_before dementia_before lung_before CTD_before peptic_ulcer_before liver_before cvd_before hemiplegia_before leukemia_before malignant_lymphoma_before cancer_before dm_before dm_drug_b4 lipid_drug_b4 
 predict pscore, pr
 
-mmws onset_dm, pscore(pscore) binary nstrata(50) plevel
+mmws onset_ht, pscore(pscore) binary nstrata(50) plevel
 drop if _support == 0
 count if _mmws==.
 drop if _mmws==.
@@ -42,9 +42,9 @@ di "Group_`i'"
 
 quietly use "overall_data_weight`i'_v1.dta", clear 
 
-	foreach outcome in death renal_decline first_esrd first_ckd{
+	foreach outcome in cvd death chd stroke heart_failure{
 		stset `outcome'_fu_period2, id(patient_pssn) failure(`outcome')
-		stptime, per(1000) by(onset_dm)
+		stptime, per(1000) by(onset_ht)
 }
 	
 }
@@ -61,10 +61,10 @@ di "Group_`i'"
 
 quietly use "overall_data_weight`i'_v1.dta", clear 
 
-foreach outcome in first_ckd first_ckd death renal_decline first_esrd  first_ckd{
+foreach outcome in cvd death chd stroke heart_failure{
 
 quietly stset `outcome'_fu_period2 [iw=_mmws], id(patient_pssn) failure(`outcome')
-quietly stcox i.onset_dm age i.sex i.smoking_bl i.af_before i.pvd_before i.amputation_before i.dementia_before i.lung_before i.CTD_before i.peptic_ulcer_before i.liver_before i.cvd_before i.hemiplegia_before i.leukemia_before i.malignant_lymphoma_before i.cancer_before i.ht_before i.ht_drug_b4 i.lipid_drug_b4
+quietly stcox i.onset_ht age i.sex i.smoking_bl i.af_before i.pvd_before i.amputation_before i.dementia_before i.lung_before i.CTD_before i.peptic_ulcer_before i.liver_before i.cvd_before i.hemiplegia_before i.leukemia_before i.malignant_lymphoma_before i.cancer_before i.dm_before i.dm_drug_b4 i.lipid_drug_b4
 	quietly matrix temp = r(table)
 	//matrix list temp
 		scalar HRij = temp[1,2]
